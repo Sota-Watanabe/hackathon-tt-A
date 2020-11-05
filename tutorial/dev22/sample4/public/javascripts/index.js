@@ -8,10 +8,9 @@ function getValue() {
 function popupValue() {
     const text1Value = getValue();
     // ここに条件分岐を記入する
-    if (text1Value!=""){
-        alert(text1Value);
+    if (text1Value == "") {
     }
-        
+    alert(text1Value);
 
 }
 
