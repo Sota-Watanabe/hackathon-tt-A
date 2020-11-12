@@ -1,8 +1,12 @@
 'use strict';
 
 module.exports = function (socket, io) {
-    // 投稿メッセージを送信する
-    socket.on('', function (data) {
-
+    // 投稿メッセージイベントを受信する
+    socket.on('sendMessageEvent', function (data) {
+        if (!data) {
+            return;
+        }
+        // 全クライアントに送信
+        io.sockets.emit('receiveMessageEvent', data);
     });
 };
