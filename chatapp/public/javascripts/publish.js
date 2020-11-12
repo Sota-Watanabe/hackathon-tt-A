@@ -6,6 +6,12 @@ function publish() {
     const userName = $('#userName').val();
     // 入力されたメッセージを取得
     const message = $('#message').val();
+
+    if(!message){
+        alert("メッセージを入力してください")
+        return false;
+    }
+
     // 投稿内容を送信
     const data = {
         userName, message
