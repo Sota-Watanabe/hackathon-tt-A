@@ -9,6 +9,6 @@ function enter() {
     if(userName !== ''){
         $('form').submit();
     } else {
-        alert('ユーザ名を入力してください')
+        alert('ユーザ名を入力してください。')
     }
 }
