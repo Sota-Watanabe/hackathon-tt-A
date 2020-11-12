@@ -19,6 +19,7 @@
             </div>
             <div class="room-thread">
                 <div id="thread"></div>
+                <tbody></tbody>
             </div>
             <div class="room-exit">
                 <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
@@ -27,6 +28,12 @@
     </div>
 </div>
 
+<tamplate id="thread-template">
+<div class="card">
+<p class="post_name inner_card"></p>
+<p class="post_text inner_card"></p>
+</div>
+</template>
 <script src="/javascripts/socket.js"></script>
 <script src="/javascripts/enter.js"></script>
 <script src="/javascripts/publish.js"></script>
