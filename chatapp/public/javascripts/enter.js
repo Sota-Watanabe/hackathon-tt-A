@@ -5,7 +5,7 @@
 const userName = $("#userName").val();
 
 // 入室メッセージイベントを送信する
-socket.emit('sendEnterEvent',userName);
+socket.emit('sendEnterEvent', userName);
 
 // サーバから受信した入室メッセージを画面上に表示する
 socket.on('enterOtherEvent', function (data) {
