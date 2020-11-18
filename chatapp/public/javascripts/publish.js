@@ -10,6 +10,9 @@ function publish() {
     const data = {
         userName, message
     }
+
+    addMessage(data);
+
     socket.emit('sendMessageEvent', data);
     // 入力欄を初期化する
     $('#message').val('');
