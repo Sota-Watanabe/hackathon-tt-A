@@ -7,15 +7,18 @@ function publish() {
     // 入力されたメッセージを取得
     const message = $('#message').val();
     const now = new Date();
-    const month = now.getMonth()+1
-    const date = now.getDate()
-    // 投稿内容を送信
+    const hours = zeroPadding(now.getHours())
+    const minutes = zeroPadding(now.getMinutes())
+    const seconds = zeroPadding(now.getSeconds())
+
+    const postTime = {
+        hours, minutes, seconds
+    }
     const data = {
         userName: userName,
         message: message,
         postTime: {
-            month: month,
-            date: date,
+            hours, minutes, seconds
         }
     }
     socket.emit('sendMessageEvent', data);
@@ -27,6 +30,13 @@ function publish() {
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
     const {userName, message, postTime} = data
-    const {month, date} = postTime
-    $('#thread').prepend('<p>' + month + '月' + date + '日' + '   '+ userName + 'さん : ' + message + '</p>');
+    const {hours, minutes, seconds} = postTime
+    $('#thread').prepend('<p>' + hours + '時' + minutes + '分' + seconds + '秒  '+ userName + 'さん : ' + message + '</p>');
 });
+
+function zeroPadding(value) {
+    if (value < 10){
+        return '0' + value
+    }
+    return value;
+}
