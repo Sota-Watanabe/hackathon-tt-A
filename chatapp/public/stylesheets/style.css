@@ -71,7 +71,11 @@ div {
 }
 
 .room-thread {
+    
+}
 
+#message {
+    white-space: pre-wrap;
 }
 
 .room-exit {
