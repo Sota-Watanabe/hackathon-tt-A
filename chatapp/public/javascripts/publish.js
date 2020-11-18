@@ -11,9 +11,6 @@ function publish() {
     const minutes = zeroPadding(now.getMinutes())
     const seconds = zeroPadding(now.getSeconds())
 
-    const postTime = {
-        hours, minutes, seconds
-    }
     const data = {
         userName: userName,
         message: message,
@@ -29,9 +26,19 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    const {userName, message, postTime} = data
-    const {hours, minutes, seconds} = postTime
-    $('#thread').prepend('<p>' + hours + '時' + minutes + '分' + seconds + '秒  '+ userName + 'さん : ' + message + '</p>');
+    const { userName, message, postTime } = data
+    const { hours, minutes, seconds } = postTime
+    if ('content' in document.createElement('template')) {
+        var clone = $($('#messageTemplate').html());
+        $('td', clone).eq(0).text(userName + ': ');
+        $('td', clone).eq(1).text('「' + message + '」');
+        $('td', clone).eq(2).text(hours + ':' + minutes + ':' + seconds);
+        $('#thread').prepend(clone);
+
+    } else {
+        console.log('ブラウザが対応していません')
+    }
+
 });
 
 function zeroPadding(value) {
