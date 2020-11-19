@@ -33,3 +33,13 @@ socket.on('receiveMessageEvent', function (data) {
     const { userName, message } = data
     $('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
 });
+
+$(".container").keydown(function(e){
+    const key = e.keyCode || 0;
+    if(key === 13){
+        if (!e.shiftKey) {
+            publish();
+        }
+        return false
+    }
+});
