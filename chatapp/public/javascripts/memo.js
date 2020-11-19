@@ -17,8 +17,9 @@ function memo() {
       var p=clone.querySelectorAll("p");
       var div=clone.querySelectorAll("div");
       //ここから書き換え
-      p[0].textContent = "memo:"+userName;
+      p[0].textContent = userName;
       p[1].textContent = message;
+      div[0].classList.add("memo");
       
       //ここまで書き換え
       tbody.appendChild(clone);

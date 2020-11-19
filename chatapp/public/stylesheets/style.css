@@ -85,3 +85,9 @@ div {
   display: flex;
   flex-direction: column-reverse;
   }
+  .memo{
+    background-color:#ffffe0;
+    }
+  .memo>.post_text::before{
+    content:"memo:";
+    }

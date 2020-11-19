@@ -32,6 +32,7 @@ function publish() {
 socket.on('receiveMessageEvent', function (data) {
   // 受け取った変数を定義するとこ
     const {userName, message} = data
+    const myUserName = $('#userName').val();
     //$('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
     if ('content' in document.createElement('template')) {
       var tbody =document.querySelector('#thread');
@@ -39,9 +40,11 @@ socket.on('receiveMessageEvent', function (data) {
 
       var clone = template.cloneNode(true); 
       var p=clone.querySelectorAll("p");
+      var div=clone.querySelectorAll("div");
       //ここから書き換え
       p[0].textContent = userName;
       p[1].textContent = message;
+      div[0].classList.add(userName);
       
       //ここまで書き換え
       tbody.appendChild(clone);
