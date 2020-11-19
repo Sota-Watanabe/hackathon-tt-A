@@ -1,15 +1,17 @@
 <div class="container">
-    <div class="row">
-        <h1>Node Chat サンプル</h1>
-    </div>
+    <nav class="navbar navbar-default">
+      <hader class="navbar-header">
+        <h1 class="navbar-brand">Node Chat サンプル</h1>
+        </header>
+    </nav>
     <div class="row">
         <form method="post" action="/room">
-            <div class="index-user_name">
-                ユーザ名
+            <div class="index-user_name form-group">
+                <p>ユーザ名</p>
                 <input type="text" id="userName" name="userName" class="index-user_name_text">
             </div>
             <div class="index-enter">
-                <input type="button" value="入室する" class="common-button index-enter_button" onclick="enter();">
+                <input type="button" value="入室する" class="common-button index-enter_button btn btn-primary" onclick="enter();">
             </div>
         </form>
     </div>
