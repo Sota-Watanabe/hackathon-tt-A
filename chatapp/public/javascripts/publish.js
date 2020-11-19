@@ -29,9 +29,8 @@ function publish() {
     }
 
     addMessage(data);
-    console.log(data);
 
-    socket.emit('sendMessageEvent', message);
+    socket.emit('sendMessageEvent', data);
     // 入力欄を初期化する
     $('#message').val('');
     return false;
@@ -43,7 +42,6 @@ socket.on('receiveMessageEvent', function (data) {
     const userName = data.userName;
     const message = data.message;
 
-    console.log(userName,message);
 
     //$('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
     if ('content' in document.createElement('template')) {
