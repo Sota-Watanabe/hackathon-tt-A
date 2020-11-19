@@ -22,17 +22,18 @@ socket.on('receiveMessageEvent', function (data) {
     const {userName, message} = data
     //$('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
     if ('content' in document.createElement('template')) {
-      var tbody =document.querySelector('tbody');
+      var tbody =document.querySelector('#thread');
       var template = document.querySelector('#thread-template');
+      console.log(tbody);
 
-      var clone=tamplate.content.cloneNode(ture);
+      var clone = template.cloneNode(true); 
       var p=clone.querySelectorAll("p");
       //ここから書き換え
       p[0].textContent = userName;
       p[1].textContent = message;
+      console.log(clone);
       
       //ここまで書き換え
-      tbody.apptendChild(clone); 
-
-    }
+      tbody.appendChild(clone);
+      }
 });
