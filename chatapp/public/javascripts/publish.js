@@ -5,9 +5,9 @@ const publishInterval = 3000
 function publishButtonInterval() {
     $("#systemlog").text("投稿は3秒のインターバルが必要です");
     $("#publish-button").prop("disabled", true);
-    setTimeout(function () { 
+    setTimeout(function () {
         $("#systemlog").text("");
-        $("#publish-button").prop("disabled", false); 
+        $("#publish-button").prop("disabled", false);
     }, publishInterval)
 }
 // 投稿メッセージをサーバに送信する
@@ -38,14 +38,14 @@ socket.on('receiveMessageEvent', function (data) {
       var tbody =document.querySelector('#thread');
       var template = document.querySelector('#thread-template');
 
-      var clone = template.cloneNode(true); 
+      var clone = template.cloneNode(true);
       var p=clone.querySelectorAll("p");
       var div=clone.querySelectorAll("div");
       //ここから書き換え
       p[0].textContent = userName;
       p[1].textContent = message;
       div[0].classList.add(userName);
-      
+
       //ここまで書き換え
       tbody.appendChild(clone);
       }
@@ -56,6 +56,8 @@ $(".container").keydown(function(e){
     if(key === 13){
         if (!e.shiftKey) {
             publish();
+        } else {
+            return true
         }
         return false
     }
