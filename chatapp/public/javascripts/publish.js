@@ -59,8 +59,6 @@ $(".container").keydown(function(e){
     if(key === 13){
         if (!e.shiftKey) {
             publish();
-        } else {
-            return true
         }
         return false
     }
