@@ -7,7 +7,7 @@ const messages = [];// message:Message
         userName: String,
         message:String,
         createDate: Date;
-        replyUserName:String;
+        directUserName:String;
     }
 
 */
@@ -50,20 +50,25 @@ function deleteMessage(id){
     return messages
 }
 
-function directMessage(data,replyUserName){
+/* user {id,userName,message} */
+
+function directMessage(user,replyUserName){
     const messageData = {
-        id: 0,
-        userName: data.userName,
-        message: data.message,
-        createDate: Date.now()
+        id: user.id,
+        userName: user.userName,
+        message: message.message,
+        createDate: Date.now(),
+        directUserName:replyUserName
     } 
+
+    messages.add(meesageData);
+    return messageData;
 }
 
 
 
 /*
-8: orderbydesec,orderbyAsecを使う
-10:　delteMessageを使う
-11: 
-
+8:  orderbydesec,orderbyAsecを使う
+10: delteMessageを使う
+11: userAPIでsocketIDを取得しsocketで指定,directMessageで渡すためのデータを作成する
 */
