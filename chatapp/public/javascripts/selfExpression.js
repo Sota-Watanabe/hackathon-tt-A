@@ -11,7 +11,7 @@ function expression() {
 
     if (selfCommentExpressionFlag == true) {
         selfTag.css("color", "black");
-        selfTag.removeAttr('font-weight');
+        selfTag.css("font-weight", "");
         $("#expression-button").text("自分のコメントを強調");
         selfCommentExpressionFlag = false
         return
