@@ -1,7 +1,19 @@
 'use strict';
 
+const publishInterval = 3000
+
+function publishButtonInterval() {
+    $("#systemlog").text("投稿は3秒のインターバルが必要です");
+    $("#publish-button").prop("disabled", true);
+    setTimeout(function () { 
+        $("#systemlog").text("");
+        $("#publish-button").prop("disabled", false); 
+    }, publishInterval)
+}
 // 投稿メッセージをサーバに送信する
 function publish() {
+    publishButtonInterval()
+
     // ユーザ名を取得
     const userName = $('#userName').val();
     // 入力されたメッセージを取得
@@ -18,6 +30,6 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    const {userName, message} = data
+    const { userName, message } = data
     $('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
 });
