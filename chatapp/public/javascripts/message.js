@@ -7,19 +7,18 @@ const messages = [];// message:Message
         userName: String,
         message:String,
         createDate: Date;
-        追加予定
+        replyUserName:String;
     }
 
 */
 
 /*　追加したメッセージデータを返す */
-function addMessage(data){
+function addMessage(id,userName,message){
     const messageData = {
-        id: 0,
-        userName: data.userName,
-        message: data.message,
+        id: id,
+        userName: userName,
+        message: message,
         createDate: Date.now()
-        
     }
 
     messages.push(messageData);
@@ -51,4 +50,20 @@ function deleteMessage(id){
     return messages
 }
 
+function directMessage(data,replyUserName){
+    const messageData = {
+        id: 0,
+        userName: data.userName,
+        message: data.message,
+        createDate: Date.now()
+    } 
+}
 
+
+
+/*
+8: orderbydesec,orderbyAsecを使う
+10:　delteMessageを使う
+11: 
+
+*/
