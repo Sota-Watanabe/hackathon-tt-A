@@ -11,7 +11,6 @@
                 <input id="userName" type="hidden" value="{{userName}}">
             </div>
             <div id="systemlog">
-                システムログメッセージ
             </div>
             <div class="room-message">
                 <textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
@@ -28,6 +27,7 @@
             </div>
         </form>
     </div>
+    <button class="self-expression" onclick="expression()">目立たせる</button>
 </div>
 
 <tamplate id="thread-template">
@@ -41,3 +41,4 @@
 <script src="/javascripts/publish.js"></script>
 <script src="/javascripts/memo.js"></script>
 <script src="/javascripts/exit.js"></script>
+<script src="/javascripts/selfExpression.js"></script>

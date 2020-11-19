@@ -8,5 +8,17 @@ function enter() {
     // ユーザ名が未入力でないかチェックする
     if(userName !== ''){
         $('form').submit();
+    } else {
+        alert('ユーザ名を入力してください。')
     }
 }
+
+$(function(){
+    $('input').keypress(function (e) {
+    var key = e.which;
+    if(key == 13){ // key13 == enter
+        enter()
+        return false;
+    }
+  });
+});

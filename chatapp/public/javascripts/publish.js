@@ -1,7 +1,19 @@
 'use strict';
 
+const publishInterval = 3000
+
+function publishButtonInterval() {
+    $("#systemlog").text("投稿は3秒のインターバルが必要です");
+    $("#publish-button").prop("disabled", true);
+    setTimeout(function () { 
+        $("#systemlog").text("");
+        $("#publish-button").prop("disabled", false); 
+    }, publishInterval)
+}
 // 投稿メッセージをサーバに送信する
 function publish() {
+    publishButtonInterval()
+
     // ユーザ名を取得
     const userName = $('#userName').val();
     // 入力されたメッセージを取得
@@ -34,4 +46,14 @@ socket.on('receiveMessageEvent', function (data) {
       //ここまで書き換え
       tbody.appendChild(clone);
       }
+});
+
+$(".container").keydown(function(e){
+    const key = e.keyCode || 0;
+    if(key === 13){
+        if (!e.shiftKey) {
+            publish();
+        }
+        return false
+    }
 });
