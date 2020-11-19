@@ -7,7 +7,21 @@ function memo() {
     // 入力されたメッセージを取得
     const message = $("#message").val();
     // メモの内容を表示
-    $('#thread').prepend('<p>' + userName + ":" + message +'</p>');
+    //$('#thread').prepend('<p>' + userName + ":" + message +'</p>');
+    if ('content' in document.createElement('template')) {
+      var tbody =document.querySelector('#thread');
+      var template = document.querySelector('#thread-template');
+
+      var clone = template.cloneNode(true); 
+      var p=clone.querySelectorAll("p");
+      var div=clone.querySelectorAll("div");
+      //ここから書き換え
+      p[0].textContent = "memo:"+userName;
+      p[1].textContent = message;
+      
+      //ここまで書き換え
+      tbody.appendChild(clone);
+      }
 
     return false;
 }
