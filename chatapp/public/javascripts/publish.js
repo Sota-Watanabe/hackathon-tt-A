@@ -1,12 +1,14 @@
 'use strict';
 
+const publishInterval = 3000
+
 function publishButtonInterval() {
     $("#systemlog").text("投稿は3秒のインターバルが必要です");
     $("#publish-button").prop("disabled", true);
     setTimeout(function () { 
         $("#systemlog").text("");
         $("#publish-button").prop("disabled", false); 
-    }, 3000)
+    }, publishInterval)
 }
 // 投稿メッセージをサーバに送信する
 function publish() {
