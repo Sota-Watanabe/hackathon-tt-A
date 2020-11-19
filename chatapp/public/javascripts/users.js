@@ -26,8 +26,6 @@ function getUser(userName){
 }
 
 
-
-
 /* userNameに対応するusersに格納されたuserのインデックス */
 function getUserIndex(userName){
     const index = users.findIndex(function(elm){
@@ -55,16 +53,18 @@ function renewPostDate(userName){
     const user = getUser(userName);
     const idx = getUserIndex(userName)
     
-    user.postDate = Date.now();
+    user.postTime = Date.now();
     users.splice(idx,1,user);
+    console.log(user);
 }
 
 function renewEnterDate(userName){
     const user = getUser(userName);
     const idx = getUserIndex(userName)
     
-    user.enterDate = Date.now();
+    user.enterTime = Date.now();
     users.splice(idx,1,user);
+    console.log(user);
 }
 
 
