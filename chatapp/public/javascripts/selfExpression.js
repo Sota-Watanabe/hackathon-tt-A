@@ -3,11 +3,23 @@ $(".self-expression").on('click',function(){
     console.log("test");
 });*/
 'use strict';
+var selfCommentExpressionFlag = false
 
-function expression(){
+function expression() {
     const userName = $("#userName").val();
     const selfTag = $("." + userName);
 
-    selfTag.css("color","red");
+    if (selfCommentExpressionFlag == true) {
+        selfTag.css("color", "black");
+        selfTag.css("font-weight", "");
+        $("#expression-button").text("自分のコメントを強調");
+        selfCommentExpressionFlag = false
+        return
+    }
 
+    selfTag.css("color", "red");
+    selfTag.css("font-weight", "bold");
+    $("#expression-button").text("自分のコメントを強調しない");
+    selfCommentExpressionFlag = true
+    return
 }
