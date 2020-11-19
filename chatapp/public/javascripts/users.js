@@ -7,9 +7,11 @@ interface User {
     passWord: String || ""
     postTime: DateTime
     exitTime: DateTime
+    enterTime: DateTime
 }
 
 */
+
 function addUser(user){
     users.push(user);
 }
@@ -22,6 +24,9 @@ function getUser(userName){
 
     return user;
 }
+
+
+
 
 /* userNameに対応するusersに格納されたuserのインデックス */
 function getUserIndex(userName){
@@ -53,3 +58,22 @@ function renewPostDate(userName){
     user.postDate = Date.now();
     users.splice(idx,1,user);
 }
+
+function renewEnterDate(userName){
+    const user = getUser(userName);
+    const idx = getUserIndex(userName)
+    
+    user.enterDate = Date.now();
+    users.splice(idx,1,user);
+}
+
+
+
+/* 
+
+15:　userのpostDateを参考する。投稿時にrenewPostDateを使う
+21:　getuserでユーザーを取得、enterDateを参照する。入室時にrenewEnterDateを使う
+
+
+
+*/
