@@ -19,10 +19,19 @@ function publish() {
     // 入力されたメッセージを取得
     const message = $('#message').val();
     // 投稿内容を送信
+
     const data = {
-        userName, message
+        id: 0,
+        userName: userName,
+        message: message,
+        createDate: Date.now(),
+        directUserName: '',
     }
-    socket.emit('sendMessageEvent', data);
+
+    addMessage(data);
+    console.log(data);
+
+    socket.emit('sendMessageEvent', message);
     // 入力欄を初期化する
     $('#message').val('');
     return false;
@@ -31,7 +40,11 @@ function publish() {
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
   // 受け取った変数を定義するとこ
-    const {userName, message} = data
+    const userName = data.userName;
+    const message = data.message;
+
+    console.log(userName,message);
+
     //$('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
     if ('content' in document.createElement('template')) {
       var tbody =document.querySelector('#thread');

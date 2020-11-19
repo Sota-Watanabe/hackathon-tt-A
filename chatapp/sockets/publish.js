@@ -3,10 +3,10 @@
 module.exports = function (socket, io) {
     // 投稿メッセージイベントを受信する
     socket.on('sendMessageEvent', function (data) {
-        if (!data) {
+        if (!data.message) {
             return;
         }
         // 全クライアントに送信
-        io.sockets.emit('receiveMessageEvent', data);
+        io.sockets.emit('receiveMessageEvent',data);
     });
 };
