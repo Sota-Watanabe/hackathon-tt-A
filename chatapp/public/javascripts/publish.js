@@ -22,14 +22,12 @@ socket.on('receiveMessageEvent', function (data) {
     $('#thread').prepend('<p>' + userName + 'さん : ' + message + '</p>');
 });
 
-$(".container").keypress(function(e){
+$(".container").keydown(function(e){
     const key = e.keyCode || 0;
-    console.log(e);
     if(key === 13){
-        if (e.shiftKey) {
-            $.noop();
-        }else{
+        if (!e.shiftKey) {
             publish();
         }
+        return false
     }
 });
