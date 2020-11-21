@@ -1,7 +1,7 @@
 'use strict';
 
 const publishInterval = 3000
-
+/*
 function publishButtonInterval() {
     $("#systemlog").text("投稿は3秒のインターバルが必要です");
     $("#publish-button").prop("disabled", true);
@@ -63,7 +63,18 @@ $(".container").keydown(function(e){
     const key = e.keyCode || 0;
     if(key === 13){
         if (!e.shiftKey) {
-            publish();
+            room.publish();
+        }
+        return false
+    }
+});*/
+
+
+window.addEventListener('keydown', function(e) {
+    const key = e.key || "";
+    if(key === "Enter"){
+        if (!e.shiftKey) {
+            room.publish();
         }
         return false
     }
