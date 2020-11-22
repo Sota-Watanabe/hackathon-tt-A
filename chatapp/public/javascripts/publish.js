@@ -1,15 +1,15 @@
 'use strict';
-
-const publishInterval = 3000
 /*
+const publishInterval = 3000
+
 function publishButtonInterval() {
-    $("#systemlog").text("投稿は3秒のインターバルが必要です");
-    $("#publish-button").prop("disabled", true);
     setTimeout(function () { 
-        $("#systemlog").text("");
-        $("#publish-button").prop("disabled", false); 
-    }, publishInterval)
+        this.canPublish = true;
+    }, publishInterval);
+
 }
+*/
+/*
 // 投稿メッセージをサーバに送信する
 function publish() {
     publishButtonInterval()
@@ -70,12 +70,12 @@ $(".container").keydown(function(e){
 });*/
 
 
-window.addEventListener('keydown', function(e) {
+
+window.addEventListener('keyup', function(e) {
     const key = e.key || "";
     if(key === "Enter"){
         if (!e.shiftKey) {
             room.publish();
         }
-        return false
     }
 });

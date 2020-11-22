@@ -14,7 +14,7 @@ div {
 }
 
 .row {
-    margin: 20px;
+    margin-left:20px;
 }
 
 /*
@@ -50,21 +50,35 @@ div {
 
 }
 
+.member-list {
+    position: sticky;
+}
+
+.member {
+    color:black;
+}
+
+.member:hover{
+    color:orange;
+}
+
+
 .room-header{
     position: sticky;
     top:0px;
     padding:20px;
-    background-color: rgb(18, 7, 116);
+    background-color: rgb(12, 170, 162);
     color:white;
 }
+
+
 
 .room-message {
     position: sticky;
     bottom:0px;
-    padding:20px;
+    padding:10px;
     background-color: aqua;
 }
-
 
 
 .room-message_textarea {
@@ -76,7 +90,7 @@ div {
 }
 
 .room-body{
-    margin: 50px 0;
+    margin: 0px 0;
 }
 
 
@@ -97,24 +111,31 @@ div {
 }
 
 .room-thread {
-    min-height: 500px;
+    min-height: 600px;
+    padding-top:60px;
 }
+
 
 .message-box{
     display: flex;
     flex-wrap: wrap;
     font-size:16px;
-
+    max-width:500px;
 }
 
 .message{
     white-space: pre-wrap;
+    word-wrap: break-word;
     background-color: rgba(66, 223, 105, 0.685);
     color: white;
     border-radius: 5px;
     padding:10px;
     margin:10px 10px;
+    max-width:400px;
+}
 
+.message-delete {
+    margin-right: 10px;
 }
 
 .message-delete:hover {
@@ -131,13 +152,14 @@ div {
 
 
 .room-alert{
-    margin:0 auto;
+    margin:20px auto;
 }
 
 .room-exit {
-
+    
 }
 
-.room-exit_button {
-
+.submit {
+    width:200px;
+    margin:0 70%;
 }

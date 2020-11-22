@@ -1,18 +1,14 @@
 'use strict';
+const models = require("../models");
+
 
 module.exports = function (socket) {
 
     // 入室メッセージをクライアントに送信する
-    socket.on('sendEnterEvent', function (userName) {
-        const user = {
-            userName: userName,
-            socketId: socket.id,
-            password: '',
-            postTime: Date.now(),
-            exitTime: Date.now(),
-            enterTime: Date.now(),
-        }
-        
+    socket.on('sendEnterEvent', async function (userName) {
+        models.addUser([0,userName,socket.id,"",Date.now(),Date.now(),Date.now()]);
+        const user = await models.getUser(userName);
+
         const md = {
             id:Math.floor( Math.random() * 1000000 ),
             message:userName　+ "さんが入室しました",
@@ -21,6 +17,7 @@ module.exports = function (socket) {
             createDate:Date.now(),
             postDateTime:""
         }
-        socket.broadcast.emit('enterOtherEvent', { md,user});
+
+        socket.broadcast.emit('enterOtherEvent', { md , user });
     });
 };
