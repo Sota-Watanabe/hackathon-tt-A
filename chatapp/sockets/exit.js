@@ -4,9 +4,9 @@ const models = require("../models");
 
 module.exports = function (socket) {
     // 退室メッセージをクライアントに送信する
-    socket.on('sendExitEvent', function (userName) {
+    socket.on('sendExitEvent',async function (userName) {
     
-    models.deleteUser(userName);
+    await models.deleteUser(userName);
     
     const md = {
         id:0,

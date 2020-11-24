@@ -90,7 +90,7 @@ const room = new Vue({
         },
 
         addUser(user){
-            this.users = addUserAPI(user,this.users);
+            this.users.push(user);
         },
 
         deleteUser(exitUserName){
@@ -98,14 +98,21 @@ const room = new Vue({
         }
     },
     delimiters: ["<%", "%>"],
-    mounted: async function(){
+    created: async function(){
         const userName = $("#userName").val();
         this.userName = userName || "";
 
         socket.emit('sendEnterEvent', userName);
         const res = await axios.get('getUserList');
         this.users = res.data;
+        
+        $(window).on('beforeunload',async function(){
+            await this.exit();
+        }.bind(this));
     },
+    destroyed: function(){
+        $(window).off('beforeunload');
+    }
 
 });
 
@@ -128,6 +135,5 @@ socket.on('receiveMessageEvent', function (data) {
 });
 
 socket.on('reciveDirectMessageEvent', function (data) {
-    console.log("hello");
     room.reciveMessage(data);
 });

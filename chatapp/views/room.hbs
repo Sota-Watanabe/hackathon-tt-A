@@ -10,9 +10,9 @@
             <div>
                 <div class="member-list" class="col-sm member-list">
                     <p>出席メンバー</p>
-                    <template v-if="showMember && users.length > 0">
+                    <template v-if="showMember">
                         <input type="button" class="btn btn-info" value="閉じる" @click="showMember = false;">
-                        <ul class="list-group">
+                        <ul class="list-group" v-if = "users.length > 0">
                             <li @click="directMessageUserName = '';" class="list-group-item">DM解除</li>
                             <li v-for="user of users"  class="list-group-item member" 
                             :class="{ active: user.userName == directMessageUserName }"@click="directMessageUserName = user.userName;"><% user.userName %>さん</li>
@@ -80,7 +80,7 @@
 <!--script src="/javascripts/enter.js"></script-->
 <script src="/javascripts/publish.js"></script>
 <!--script src="/javascripts/memo.js"></script-->
-<script src="/javascripts/exit.js"></script>
+<!--script src="/javascripts/exit.js"></script-->
 <!--script src="/javascripts/selfExpression.js"></script-->
 <script src="/javascripts/users.js"></script>
 <script src="/javascripts/message.js"></script>

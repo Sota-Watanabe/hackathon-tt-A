@@ -1,5 +1,6 @@
 'use strict';
-
-$(window).on('beforeunload',async function(){
-    await room.exit();
+/*
+$(window).on('beforeunload',function(){
+    room.exit();
 });
+*/
