@@ -117,15 +117,7 @@ const room = new Vue({
         socket.emit('sendEnterEvent', userName);
         const res = await axios.get('getUserList');
         this.users = res.data;
-
-        // $(window).on('beforeunload',async function(){
-        //     await this.exit();
-        // }.bind(this));
     },
-    // destroyed: function(){
-    //     $(window).off('beforeunload');
-    // }
-
 });
 
 socket.on('getUserList',function(users){
@@ -149,7 +141,3 @@ socket.on('receiveMessageEvent', function (data) {
 socket.on('reciveDirectMessageEvent', function (data) {
     room.reciveMessage(data);
 });
-
-async function href() {
-    location.href = "/"
-}
