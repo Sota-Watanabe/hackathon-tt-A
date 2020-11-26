@@ -30,6 +30,7 @@ function publish() {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
+    console.log("startpost");
   // 受け取った変数を定義するとこ
     const {userName, message} = data
     const myUserName = $('#userName').val();
@@ -42,6 +43,7 @@ socket.on('receiveMessageEvent', function (data) {
       var p=clone.querySelectorAll("p");
       var div=clone.querySelectorAll("div");
       //ここから書き換え
+      //div.classList.remove("memo");
       p[0].textContent = userName;
       p[1].textContent = message;
       div[0].classList.add(userName);

@@ -13,17 +13,16 @@ function memo() {
       var tbody =document.querySelector('#thread');
       var template = document.querySelector('#thread-template');
 
-      var clone = template.cloneNode(true); 
-      var p=clone.querySelectorAll("p");
-      var div=clone.querySelectorAll("div");
+      var clone_memo = template.cloneNode(true); 
+      var p=clone_memo.querySelectorAll("p");
+      var div=clone_memo.querySelectorAll("div");
       //ここから書き換え
       p[0].textContent = userName;
       p[1].textContent = message;
       div[0].classList.add("memo");
       
       //ここまで書き換え
-      tbody.appendChild(clone);
+      tbody.appendChild(clone_memo);
       }
-
     return false;
 }
