@@ -34,7 +34,7 @@ const room = new Vue({
             }else{
                 this.messages.unshift(md);
             }
-            this.message = ''; 
+            this.message = '';
             $("textarea").val() = "";
             return md
         },
@@ -57,8 +57,8 @@ const room = new Vue({
             }
             socket.emit('sendMessageEvent', md);
             this.message = "";
-            
-            setTimeout(function () { 
+
+            setTimeout(function () {
                 this.canPublish = true;
             }.bind(this), 3000);
         },
@@ -85,8 +85,20 @@ const room = new Vue({
             return false;
         },
         async exit(){
-            await socket.emit("sendExitEvent",this.userName);
-            location.href = "/"
+            if (!confirm('本当に退出しますか?')) {
+                // submitボタンの効果をキャンセルし、クリックしても何も起きない
+                return false;
+             // 「OK」をクリックした際の処理を記述
+            } else {
+                // emit後に画面に遷移する
+                await new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        socket.emit("sendExitEvent",this.userName);
+                        resolve()
+                    }, 0)
+                })
+                location.href = "/"
+            }
         },
 
         addUser(user){
@@ -95,7 +107,7 @@ const room = new Vue({
 
         deleteUser(exitUserName){
             this.users = deleteUserAPI(exitUserName,this.users);
-        }
+        },
     },
     delimiters: ["<%", "%>"],
     created: async function(){
@@ -105,14 +117,14 @@ const room = new Vue({
         socket.emit('sendEnterEvent', userName);
         const res = await axios.get('getUserList');
         this.users = res.data;
-        
-        $(window).on('beforeunload',async function(){
-            await this.exit();
-        }.bind(this));
+
+        // $(window).on('beforeunload',async function(){
+        //     await this.exit();
+        // }.bind(this));
     },
-    destroyed: function(){
-        $(window).off('beforeunload');
-    }
+    // destroyed: function(){
+    //     $(window).off('beforeunload');
+    // }
 
 });
 
@@ -137,3 +149,7 @@ socket.on('receiveMessageEvent', function (data) {
 socket.on('reciveDirectMessageEvent', function (data) {
     room.reciveMessage(data);
 });
+
+async function href() {
+    location.href = "/"
+}
